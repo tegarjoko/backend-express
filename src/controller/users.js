@@ -64,9 +64,27 @@ const deleteUsers = async (req, res) => {
   }
 };
 
+const changePassword = async (req, res) =>{
+  const { id } = req.params;
+  const { body } = req;
+  try {
+    await UsersModel.changePassword(body, id);
+    res.status(200).json({
+      message: "UPDATE user data succes",
+      data: { idUser: id, ...body },
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Update user data failed",
+      serverMessage: error,
+    });
+  }
+}
+
 module.exports = {
   getAllUsers,
   createNewUsers,
   updateDataUsers,
   deleteUsers,
+  changePassword
 };
