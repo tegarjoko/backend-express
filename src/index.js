@@ -7,7 +7,7 @@ const middleLogReq = require("./middleware/logs");
 
 app.use(middleLogReq);
 app.use(express.json());
-app.use("/users", usersRoutes);
+app.use("/v1/users", usersRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
