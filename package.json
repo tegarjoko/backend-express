@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon src/index.js"
   },
-  "author": "Tegar Joko Kurniawan",
+  "author": "WildExplorers Companion (WEsC)",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.3.1",
