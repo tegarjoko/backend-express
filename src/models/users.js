@@ -1,7 +1,7 @@
 const dbPool = require("../config/database");
 
-const getAllUser = () => {
-  const SQLQuery = "SELECT * FROM users";
+const getUser = (id) => {
+  const SQLQuery = `SELECT * FROM users WHERE id=${id}`;
   return dbPool.execute(SQLQuery);
 };
 
@@ -22,13 +22,13 @@ const deleteUser = (id) => {
 
 const changePassword = (body, id) => {
   const SQLQuery = `UPDATE users SET password='${body.password}' WHERE id=${id}`;
-  return dbPool.execute(SQLQuery)
-}
+  return dbPool.execute(SQLQuery);
+};
 
 module.exports = {
-  getAllUser,
+  getUser,
   createNewUser,
   updateUser,
   deleteUser,
-  changePassword
+  changePassword,
 };
