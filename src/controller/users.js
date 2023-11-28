@@ -1,91 +1,126 @@
 const UsersModel = require("../models/users");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
+const usersmodel = require("../models/usersmodel");
+const { registerValidation, loginValidation } = require("../middleware/validation");
 
-const getUsers = async (req, res) => {
-  const { id } = req.params;
+const loginUsers = async (req, res) => {
   try {
-    const [data] = await UsersModel.getUser(id);
-    res.status(200).json({
-      message: "success",
-      data,
+    const { email, password } = req.body;
+    // Validasi Login Input Form (joi)
+    const { error } = loginValidation(req.body);
+    if (error) return res.status(400).json(error.details[0].message);
+    // Cek apakah email ada di database
+    const getUser = await usersmodel.findOne({
+      where: { email: email },
     });
+    if (!getUser) return res.status(400).json({ message: "Email tidak ditemukan" });
+    // Cek apakah password sudah sesuai
+    const resultLogin = bcrypt.compareSync(password, getUser.password);
+    if (!resultLogin) return res.status(400).json({ message: "Username atau Password Salah" });
+    // Creating Token
+    const token = jwt.sign({ _email: getUser.email }, process.env.SECRET_TOKEN);
+    // Send Token
+    res
+      .header("auth-token", token)
+      .json({ message: "success", data: { id: getUser.id, email: getUser.email, name: getUser.name } })
+      .status(200);
   } catch (error) {
     res.status(500).json({
-      message: "Get user data failed",
+      message: "Login failed",
       serverMessage: error,
     });
   }
 };
 
-const createNewUsers = async (req, res) => {
-  const { body } = req;
+const registerUsers = async (req, res) => {
   try {
-    await UsersModel.createNewUser(body);
-    res.status(201).json({
-      message: "success",
-      data: body,
+    const { name, password, email } = req.body;
+    // Validasi Register Input Form  (joi)
+    const { error } = registerValidation(req.body);
+    if (error) return res.status(400).json({ message: error.details[0].message });
+    // Check apakah email sudah terdaftar
+    const getUser = await usersmodel.findOne({
+      where: { email: email },
     });
+    if (getUser) return res.status(400).json({ message: "Email sudah terdaftar" });
+    // Jika sudah sesuai kriteria, maka hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+    // Create new user
+    const users = new usersmodel({
+      name: name,
+      password: hashedPassword,
+      email: email,
+    });
+    // Save to database
+    const savedUser = await users.save();
+    res.json({ message: "success", data: { id: getUser.id, email: getUser.email, name: getUser.name } }).status(201);
   } catch (error) {
-    res.status(500).json({
-      message: "Create new user failed",
-      serverMessage: error,
-    });
-  }
-};
-
-const updateDataUsers = async (req, res) => {
-  const { id } = req.params;
-  const { body } = req;
-  try {
-    await UsersModel.updateUser(body, id);
-    res.status(200).json({
-      message: "success",
-      data: { idUser: id, ...body },
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: "Update user data failed",
-      serverMessage: error,
-    });
-  }
-};
-
-const deleteUsers = async (req, res) => {
-  const { id } = req.params;
-  try {
-    await UsersModel.deleteUser(id);
-    res.status(200).json({
-      message: "success",
-      data: null,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: "Delete user failed",
-      serverMessage: error,
-    });
+    res.status(500).json({ message: "Register failed", serverMessage: error });
   }
 };
 
 const changePassword = async (req, res) => {
-  const { id } = req.params;
-  const { body } = req;
+  const { email, currentPassword, newPassword } = req.body;
   try {
-    await UsersModel.changePassword(body, id);
-    res.status(200).json({
-      message: "success",
-      data: { idUser: id, ...body },
-    });
+    // Validasi Change Password Input Form (joi)
+    const { error } = changePasswordValidation(req.body);
+    if (error) {
+      return res.status(400).json({ message: error.details[0].message });
+    }
+    // Cari pengguna berdasarkan email
+    const getUser = await usersmodel.findOne({ where: { email } });
+    // Jika pengguna tidak ditemukan
+    if (!getUser) {
+      return res.status(404).json({ message: "Pengguna tidak ditemukan." });
+    }
+    // Verifikasi kata sandi saat ini
+    const passwordMatch = await bcrypt.compare(currentPassword, getUser.password);
+    if (!passwordMatch) {
+      return res.status(401).json({ message: "Kata sandi saat ini tidak cocok." });
+    }
+    // Hash kata sandi baru
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    // Simpan kata sandi baru ke dalam database
+    await getUser.update({ password: hashedPassword }, { where: { email } });
+    res.status(200).json({ message: "Kata sandi berhasil diubah." });
   } catch (error) {
-    res.status(500).json({
-      message: "Update user data failed",
-      serverMessage: error,
-    });
+    console.error(error);
+    res.status(500).json({ message: "Terjadi kesalahan pada server.", serverMessage: error });
   }
 };
 
+const deleteUsers = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    // Validasi Delete Input Form (joi)
+    const { error } = deleteValidation(req.body);
+    if (error) {
+      return res.status(400).json({ message: error.details[0].message });
+    }
+    // Cari pengguna berdasarkan email
+    const getUser = await usersmodel.findOne({ where: { email } });
+    // Jika pengguna tidak ditemukan
+    if (!getUser) {
+      return res.status(404).json({ message: "Pengguna tidak ditemukan." });
+    }
+    // Verifikasi kata sandi
+    const passwordMatch = await bcrypt.compare(password, getUser.password);
+    if (!passwordMatch) {
+      return res.status(401).json({ message: "Kata sandi tidak cocok." });
+    }
+    // Hapus pengguna dari database
+    await getUser.destroy({ where: { email } });
+    res.status(200).json({ message: "Pengguna berhasil dihapus." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Terjadi kesalahan pada server.", serverMessage: error });
+  }
+};
 module.exports = {
-  getUsers,
-  createNewUsers,
-  updateDataUsers,
+  loginUsers,
+  registerUsers,
   deleteUsers,
   changePassword,
 };
