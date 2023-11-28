@@ -1,13 +1,12 @@
-const UsersModel = require("../models/users");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const usersmodel = require("../models/usersmodel");
-const { registerValidation, loginValidation } = require("../middleware/validation");
+const { registerValidation, loginValidation, deleteValidation, changePasswordValidation } = require("../middleware/validation");
 
 const loginUsers = async (req, res) => {
+  const { email, password } = req.body;
   try {
-    const { email, password } = req.body;
     // Validasi Login Input Form (joi)
     const { error } = loginValidation(req.body);
     if (error) return res.status(400).json(error.details[0].message);
@@ -23,10 +22,11 @@ const loginUsers = async (req, res) => {
     const token = jwt.sign({ _email: getUser.email }, process.env.SECRET_TOKEN);
     // Send Token
     res
+      .status(200)
       .header("auth-token", token)
-      .json({ message: "success", data: { id: getUser.id, email: getUser.email, name: getUser.name } })
-      .status(200);
+      .json({ message: "success", data: { id: getUser.id, email: getUser.email, name: getUser.name } });
   } catch (error) {
+    console.error(error);
     res.status(500).json({
       message: "Login failed",
       serverMessage: error,
@@ -35,8 +35,8 @@ const loginUsers = async (req, res) => {
 };
 
 const registerUsers = async (req, res) => {
+  const { name, email, password } = req.body;
   try {
-    const { name, password, email } = req.body;
     // Validasi Register Input Form  (joi)
     const { error } = registerValidation(req.body);
     if (error) return res.status(400).json({ message: error.details[0].message });
@@ -50,14 +50,15 @@ const registerUsers = async (req, res) => {
     // Create new user
     const users = new usersmodel({
       name: name,
-      password: hashedPassword,
       email: email,
+      password: hashedPassword,
     });
     // Save to database
     const savedUser = await users.save();
-    res.json({ message: "success", data: { id: getUser.id, email: getUser.email, name: getUser.name } }).status(201);
+    return res.status(201).json({ message: "success", data: { id: savedUser.id, email: savedUser.email, name: savedUser.name } });
   } catch (error) {
-    res.status(500).json({ message: "Register failed", serverMessage: error });
+    console.error(error);
+    return res.status(500).json({ message: "Register failed", serverMessage: error });
   }
 };
 
