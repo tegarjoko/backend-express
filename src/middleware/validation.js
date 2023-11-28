@@ -20,7 +20,7 @@ const loginValidation = (data) => {
 const changePasswordValidation = (data) => {
   const schema = Joi.object({
     email: Joi.string().min(6).required().email(),
-    oldPassword: Joi.string().min(8).required(),
+    currentPassword: Joi.string().min(8).required(),
     newPassword: Joi.string().min(8).required(),
   });
   return schema.validate(data);
