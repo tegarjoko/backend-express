@@ -1,7 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv");
-const usersmodel = require("../models/usersmodel");
+const { usersmodel } = require("../models/models");
 const { registerValidation, loginValidation, deleteValidation, changePasswordValidation } = require("../middleware/validation");
 
 const loginUsers = async (req, res) => {
