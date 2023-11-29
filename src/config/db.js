@@ -2,11 +2,23 @@ const { Sequelize } = require("sequelize");
 require("dotenv").config();
 
 const db = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASS, {
-  host: "localhost",
-  dialect: "mysql",
+  host: process.env.DB_HOST,
+  dialect: process.env.DB_DIALECT,
+  timezone: "+07:00",
+  dialectOptions: {
+    useUTC: false, //for reading from database
+    dateStrings: true,
+    typeCast(field, next) {
+      // convert date time table to string
+      if (field.type === "DATETIME") {
+        return field.string();
+      }
+      return next();
+    },
+  },
 });
 
-const testConneciton = async () => {
+const testConnection = async () => {
   try {
     await db.authenticate().then(() => {
       console.log("*****Connection has been established successfully.*****");
@@ -15,7 +27,7 @@ const testConneciton = async () => {
     console.error("Unable to connect to the database:", error);
   }
 };
-testConneciton();
+testConnection();
 db.sync({});
 
 module.exports = db;
