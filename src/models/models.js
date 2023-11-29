@@ -49,4 +49,15 @@ const edibleplantmodel = db.define("edible_plant", {
   },
 });
 
-module.exports = { usersmodel, survivalmodel, edibleplantmodel };
+const firstaidmodel = db.define("first_aid", {
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  url_markdown: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+});
+
+module.exports = { usersmodel, survivalmodel, edibleplantmodel, firstaidmodel };
