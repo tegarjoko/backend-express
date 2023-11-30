@@ -43,12 +43,12 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 ```json
 {
-	"message" : “success”,
-	"data" : {
-		"id" : "integer",
-		"email" : "string",
-		"name" : "string"
-	}
+  "message": "string",
+  "data": {
+    "id": "integer",
+    "email": "string",
+    "name": "string"
+  }
 }
 ```
 
@@ -88,12 +88,12 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 ```json
 {
-	"message" : “success”,
-	"data" : {
-		"id" : "integer",
-		"email" : "string",
-		"name" : "string"
-	}
+  "message": "string",
+  "data": {
+    "id": "integer",
+    "email": "string",
+    "name": "string"
+  }
 }
 ```
 
@@ -133,12 +133,12 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 ```json
 {
-	"message" : “success”,
-	"data" : {
-		"id" : "integer",
-		"email" : "string",
-		"name" : "string"
-	}
+  "message": "string",
+  "data": {
+    "id": "integer",
+    "email": "string",
+    "name": "string"
+  }
 }
 ```
 
@@ -177,7 +177,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 ```json
 {
-	"message" : “success”
+  "message": "string"
 }
 ```
 
@@ -208,12 +208,12 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 ```json
 {
-	"message" : “success”,
-	"data" : {
-		"id" : "integer",
-		"name" : "string",
-		"url_markdown" : "string"
-	}
+  "message": "string",
+  "data": {
+    "id": "integer",
+    "name": "string",
+    "url_markdown": "string"
+  }
 }
 ```
 
@@ -244,12 +244,12 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 ```json
 {
-	"message" : “success”,
-	"data" : {
-		"id" : "integer",
-		"name" : "string",
-		"url_markdown" : "string"
-	}
+  "message": "string",
+  "data": {
+    "id": "integer",
+    "name": "string",
+    "url_markdown": "string"
+  }
 }
 ```
 
@@ -280,12 +280,12 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 ```json
 {
-	"message" : “success”,
-	"data" : {
-		"id" : "integer",
-		"name" : "string",
-		"description" : "string"
-	}
+  "message": "string",
+  "data": {
+    "id": "integer",
+    "name": "string",
+    "description": "string"
+  }
 }
 ```
 
