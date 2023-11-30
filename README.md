@@ -14,9 +14,9 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
   - [PATCH /v1/users/change-password/](#patch-v1userschange-password)
   - [DELETE /v1/users/delete](#delete-v1usersdelete)
 - [Feature API](#feature-api)
-  - [GET /survival-guide](#get-v1featuresurvival-guide)
-  - [GET /first-aid](#get-v1featurefirst-aid)
-  - [GET /edible-plant](#get-v1featureedible-plant)
+  - [GET /v1/feature/survival-guide](#get-v1featuresurvival-guide)
+  - [GET /v1/feature/first-aid](#get-v1featurefirst-aid)
+  - [GET /v1/feature/edible-plant](#get-v1featureedible-plant)
 
 ## Users API
 
