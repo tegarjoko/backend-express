@@ -281,11 +281,22 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 ```json
 {
   "message": "string",
-  "data": {
+  "data": [
+    {
     "id": "integer",
     "name": "string",
-    "description": "string"
-  }
+    "description": "string",
+    "createdAt" : "date",
+    "updatedAt" : "date"
+    }
+    {
+    "id": "integer",
+    "name": "string",
+    "description": "string",
+    "createdAt" : "date",
+    "updatedAt" : "date"
+    }
+  ]
 }
 ```
 
