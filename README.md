@@ -12,7 +12,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
   - [POST /v1/users/register](#post-v1usersregister)
   - [POST /v1/users/login](#post-v1userslogin)
   - [PATCH /v1/users/change-password/](#patch-v1userschange-password)
-  - [PATCH /v1/users/delete](#delete-v1usersdelete)
+  - [DELETE /v1/users/delete](#delete-v1usersdelete)
 - [Feature API](#feature-api)
   - [GET /survival-guide](#get-v1featuresurvival-guide)
   - [GET /first-aid](#get-v1featurefirst-aid)
