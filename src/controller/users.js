@@ -84,7 +84,7 @@ const changePassword = async (req, res) => {
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     // Simpan kata sandi baru ke dalam database
     await getUser.update({ password: hashedPassword }, { where: { email } });
-    res.status(200).json({ message: "Kata sandi berhasil diubah." });
+    res.status(200).json({ message: "success" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Terjadi kesalahan pada server.", serverMessage: error });
@@ -112,7 +112,7 @@ const deleteUsers = async (req, res) => {
     }
     // Hapus pengguna dari database
     await getUser.destroy({ where: { email } });
-    res.status(200).json({ message: "Pengguna berhasil dihapus." });
+    res.status(200).json({ message: "success" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Terjadi kesalahan pada server.", serverMessage: error });
