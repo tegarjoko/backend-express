@@ -26,7 +26,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 - Header
   - Content-Type: application/json
-    - Accept: application/json
+  - Accept: application/json
 - Body :
 
 ```json
@@ -70,7 +70,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 - Header
   - Content-Type: application/json
-    - Accept: application/json
+  - Accept: application/json
 - Body :
 
 ```json
@@ -115,7 +115,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 - Header
   - Content-Type: application/json
-    - Accept: application/json
+  - Accept: application/json
   - X-Auth-Token : "secret api token/key"
 - Body
 
@@ -160,7 +160,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 - Header
   - Content-Type: application/json
-    - Accept: application/json
+  - Accept: application/json
   - X-Auth-Token : "secret api token/key"
 - Body
 
@@ -199,7 +199,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 - Header
   - Content-Type: application/json
-    - Accept: application/json
+  - Accept: application/json
   - X-Auth-Token : "secret api token/key"
 
 **Response Success:**
@@ -235,7 +235,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 - Header
   - Content-Type: application/json
-    - Accept: application/json
+  - Accept: application/json
   - X-Auth-Token : "secret api token/key"
 
 **Response Success:**
@@ -271,7 +271,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 - Header
   - Content-Type: application/json
-    - Accept: application/json
+  - Accept: application/json
   - X-Auth-Token : "secret api token/key"
 
 **Response Success:**
