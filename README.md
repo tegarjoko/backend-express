@@ -193,6 +193,10 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 # Feature API
 
+### Note: The Feature API is not fixed yet and subject to change
+
+##
+
 ### GET /v1/feature/survival-guide
 
 **Request:**
@@ -311,5 +315,3 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 ```
 
 ##
-
-### Note: The Feature API is not fixed yet and subject to change
