@@ -43,7 +43,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 ```json
 {
-	"message" : “success”
+	"message" : “success”,
 	"data" : {
 		"id" : "integer",
 		"email" : "string",
@@ -88,7 +88,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 ```json
 {
-	"message" : “success”
+	"message" : “success”,
 	"data" : {
 		"id" : "integer",
 		"email" : "string",
@@ -103,7 +103,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 ```json
 {
-	"message" : string
+  "message": "string"
 }
 ```
 
@@ -133,7 +133,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 ```json
 {
-	"message" : “success”
+	"message" : “success”,
 	"data" : {
 		"id" : "integer",
 		"email" : "string",
@@ -208,7 +208,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 ```json
 {
-	"message" : “success”
+	"message" : “success”,
 	"data" : {
 		"id" : "integer",
 		"name" : "string",
@@ -244,7 +244,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 ```json
 {
-	"message" : “success”
+	"message" : “success”,
 	"data" : {
 		"id" : "integer",
 		"name" : "string",
@@ -280,7 +280,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 ```json
 {
-	"message" : “success”
+	"message" : “success”,
 	"data" : {
 		"id" : "integer",
 		"name" : "string",
