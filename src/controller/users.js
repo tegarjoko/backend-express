@@ -22,7 +22,7 @@ const loginUsers = async (req, res) => {
     // Send Token
     res
       .status(200)
-      .header("auth-token", token)
+      .header("X-Auth-Token", token)
       .json({ message: "success", data: { id: getUser.id, email: getUser.email, name: getUser.name } });
   } catch (error) {
     console.error(error);
