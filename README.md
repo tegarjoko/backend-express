@@ -143,12 +143,7 @@ npm run start
 
 ```json
 {
-  "message": "string",
-  "data": {
-    "id": "integer",
-    "email": "string",
-    "name": "string"
-  }
+  "message": "string"
 }
 ```
 
