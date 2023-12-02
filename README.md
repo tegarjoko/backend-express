@@ -6,6 +6,16 @@
 
 Wilderness survival emergency application is a vital resource for outdoor enthusiasts exploring wild forests. It offers three core features: a comprehensive wilderness survival guide, a first aid module, and an innovative object recognition system for edible wild plants. The survival guide equips users with essential knowledge on shelter building, fire-making, water purification, and navigation, all accessible offline. The first aid module provides step-by-step instructions for treating wilderness-related injuries. Most notably, the object recognition feature uses image recognition technology to identify edible wild plants, enabling users to make informed foraging decisions. This application is an indispensable companion for those venturing into the wilderness, ensuring they have the tools and knowledge to survive and thrive in the wild.
 
+## How to Start the Project
+
+```
+npm install
+```
+
+```
+npm run start
+```
+
 ## API Spec
 
 - [Users API](#users-api)
@@ -133,12 +143,7 @@ Wilderness survival emergency application is a vital resource for outdoor enthus
 
 ```json
 {
-  "message": "string",
-  "data": {
-    "id": "integer",
-    "email": "string",
-    "name": "string"
-  }
+  "message": "string"
 }
 ```
 
