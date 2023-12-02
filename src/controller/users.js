@@ -16,7 +16,7 @@ const loginUsers = async (req, res) => {
     if (!getUser) return res.status(400).json({ message: "Email tidak ditemukan" });
     // Cek apakah password sudah sesuai
     const resultLogin = bcrypt.compareSync(password, getUser.password);
-    if (!resultLogin) return res.status(400).json({ message: "Username atau Password Salah" });
+    if (!resultLogin) return res.status(400).json({ message: "Email atau Password Salah" });
     // Creating Token
     const token = jwt.sign({ _email: getUser.email }, process.env.SECRET_TOKEN);
     // Send Token
