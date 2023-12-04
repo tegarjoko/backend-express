@@ -40,6 +40,9 @@ const deleteSurvivalGuide = async (req, res) => {
   try {
     const { id } = req.params;
     const deleteSurvival = await survivalmodel.destroy({ where: { id: id } });
+    if (!deleteSurvival) {
+      return res.status(404).json({ success: false, message: "Survival Guide not found" });
+    }
     return res.status(200).json({ success: true, message: "success", data: deleteSurvival });
   } catch (error) {
     console.error(error);

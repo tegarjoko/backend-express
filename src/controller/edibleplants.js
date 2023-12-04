@@ -40,6 +40,9 @@ const deleteEdiblePlant = async (req, res) => {
   try {
     const { id } = req.params;
     const deleteEdible = await edibleplantmodel.destroy({ where: { id: id } });
+    if (!deleteEdible) {
+      return res.status(404).json({ success: false, message: "Edible Plant not found" });
+    }
     return res.status(200).json({ success: true, message: "success", data: deleteEdible });
   } catch (error) {
     console.error(error);

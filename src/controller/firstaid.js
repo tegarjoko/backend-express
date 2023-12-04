@@ -40,6 +40,9 @@ const deleteFirstAid = async (req, res) => {
   try {
     const { id } = req.params;
     const deleteFirstAid = await firstaidmodel.destroy({ where: { id: id } });
+    if (!deleteFirstAid) {
+      return res.status(404).json({ success: false, message: "First Aid not found" });
+    }
     return res.status(200).json({ success: true, message: "success", data: deleteFirstAid });
   } catch (error) {
     console.error(error);
