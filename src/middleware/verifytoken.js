@@ -21,6 +21,7 @@ function auth(req, res, next) {
 
 const isAdmin = async (req, res, next) => {
   const email = req.body.email;
+  if (!email) return res.status(400).json({ success: false, message: "Email is required" });
   const getUser = await usersmodel.findOne({
     where: { email: email },
   });
