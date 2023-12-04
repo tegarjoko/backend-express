@@ -1,12 +1,13 @@
 const jwt = require("jsonwebtoken");
+const { usersmodel } = require("../models/models");
 
 function auth(req, res, next) {
   const currentTime = Math.floor(Date.now() / 1000);
   const checkToken = req.header("X-Auth-Token");
-  if (!checkToken) return res.status(401).json("Access Denied");
+  if (!checkToken) return res.status(401).json({ success: false, message: "Access Denied" });
   const decodedToken = jwt.decode(checkToken, process.env.SECRET_TOKEN);
   if (decodedToken.exp < currentTime) {
-    return res.status(401).json("Token expired");
+    return res.status(401).json({ success: false, message: "Token expired" });
   }
   try {
     const verifyToken = jwt.verify(checkToken, process.env.SECRET_TOKEN);
@@ -14,13 +15,17 @@ function auth(req, res, next) {
     next();
   } catch (error) {
     console.error(error);
-    res.status(400).json({ message: "Invalid Token" });
+    res.status(400).json({ success: false, message: "Invalid Token" });
   }
 }
 
-isAdmin = (req, res, next) => {
-  if (req.user.role !== "admin") {
-    return res.status(403).json("You need admin role to access this page");
+const isAdmin = async (req, res, next) => {
+  const email = req.body.email;
+  const getUser = await usersmodel.findOne({
+    where: { email: email },
+  });
+  if (getUser.role !== "admin") {
+    return res.status(403).json({ success: false, message: "You need admin role to access this page" });
   }
   next();
 };
