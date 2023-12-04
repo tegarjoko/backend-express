@@ -7,20 +7,20 @@ const postEdiblePlant = async (req, res) => {
       name: name,
       description: description,
     });
-    return res.status(201).json({ message: "success", data: postEdible });
+    return res.status(201).json({ success: true, message: "success", data: postEdible });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: "Post Edible Plant failed", serverMessage: error });
+    return res.status(500).json({ success: false, message: "Post Edible Plant failed", serverMessage: error });
   }
 };
 
 const getEdiblePlant = async (req, res) => {
   try {
     const getEdible = await edibleplantmodel.findAll();
-    return res.status(200).json({ message: "success", data: getEdible });
+    return res.status(200).json({ success: true, message: "success", data: getEdible });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: "Get Edible Plant failed", serverMessage: error });
+    return res.status(500).json({ success: false, message: "Get Edible Plant failed", serverMessage: error });
   }
 };
 
@@ -29,10 +29,10 @@ const updateEdiblePlant = async (req, res) => {
     const { id } = req.params;
     const { name, description } = req.body;
     const updateEdible = await edibleplantmodel.update({ name: name, description: description }, { where: { id: id } });
-    return res.status(200).json({ message: "success", data: updateEdible });
+    return res.status(200).json({ success: true, message: "success", data: updateEdible });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: "Update Edible Plant failed", serverMessage: error });
+    return res.status(500).json({ success: false, message: "Update Edible Plant failed", serverMessage: error });
   }
 };
 
@@ -40,10 +40,10 @@ const deleteEdiblePlant = async (req, res) => {
   try {
     const { id } = req.params;
     const deleteEdible = await edibleplantmodel.destroy({ where: { id: id } });
-    return res.status(200).json({ message: "success", data: deleteEdible });
+    return res.status(200).json({ success: true, message: "success", data: deleteEdible });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: "Delete Edible Plant failed", serverMessage: error });
+    return res.status(500).json({ success: false, message: "Delete Edible Plant failed", serverMessage: error });
   }
 };
 
