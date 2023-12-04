@@ -42,7 +42,7 @@ const loginUsers = async (req, res) => {
 };
 
 const registerUsers = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, role } = req.body;
   try {
     // Validasi Register Input Form  (joi)
     const { error } = registerValidation(req.body);
@@ -59,6 +59,7 @@ const registerUsers = async (req, res) => {
       name: name,
       email: email,
       password: hashedPassword,
+      role: role,
     });
     // Save to database
     const savedUser = await users.save();
