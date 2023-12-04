@@ -53,6 +53,7 @@ npm run start
 
 ```json
 {
+  "success": "boolean",
   "message": "string",
   "data": {
     "id": "integer",
@@ -68,6 +69,7 @@ npm run start
 
 ```json
 {
+  "success": "boolean",
   "message": "string"
 }
 ```
@@ -98,6 +100,7 @@ npm run start
 
 ```json
 {
+  "success": "boolean",
   "message": "string",
   "data": {
     "id": "integer",
@@ -113,6 +116,7 @@ npm run start
 
 ```json
 {
+  "success": "boolean",
   "message": "string"
 }
 ```
@@ -143,6 +147,7 @@ npm run start
 
 ```json
 {
+  "success": "boolean",
   "message": "string"
 }
 ```
@@ -153,6 +158,7 @@ npm run start
 
 ```json
 {
+  "success": "boolean",
   "message": "string"
 }
 ```
@@ -182,6 +188,7 @@ npm run start
 
 ```json
 {
+  "success": "boolean",
   "message": "string"
 }
 ```
@@ -192,6 +199,7 @@ npm run start
 
 ```json
 {
+  "success": "boolean",
   "message": "string"
 }
 ```
@@ -217,6 +225,7 @@ npm run start
 
 ```json
 {
+  "success": "boolean",
   "message": "string",
   "data": {
     "id": "integer",
@@ -232,6 +241,7 @@ npm run start
 
 ```json
 {
+  "success": "boolean",
   "message": "string"
 }
 ```
@@ -253,6 +263,7 @@ npm run start
 
 ```json
 {
+  "success": "boolean",
   "message": "string",
   "data": {
     "id": "integer",
@@ -268,6 +279,7 @@ npm run start
 
 ```json
 {
+  "success": "boolean",
   "message": "string"
 }
 ```
@@ -289,6 +301,7 @@ npm run start
 
 ```json
 {
+  "success" : "boolean",
   "message": "string",
   "data": [
     {
@@ -315,6 +328,7 @@ npm run start
 
 ```json
 {
+  "success": "boolean",
   "message": "string"
 }
 ```
