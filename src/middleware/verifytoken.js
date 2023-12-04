@@ -25,6 +25,7 @@ const isAdmin = async (req, res, next) => {
   const getUser = await usersmodel.findOne({
     where: { email: email },
   });
+  if (!getUser) return res.status(400).json({ success: false, message: "Email not found" });
   if (getUser.role !== "admin") {
     return res.status(403).json({ success: false, message: "You need admin role to access this page" });
   }
