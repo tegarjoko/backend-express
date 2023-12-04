@@ -28,6 +28,6 @@ const testConnection = async () => {
   }
 };
 testConnection();
-db.sync({});
+db.sync({ alter: true });
 
 module.exports = db;
