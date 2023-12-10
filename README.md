@@ -27,6 +27,15 @@ npm run start
   - [GET /v1/feature/survival-guide](#get-v1featuresurvival-guide)
   - [GET /v1/feature/first-aid](#get-v1featurefirst-aid)
   - [GET /v1/feature/edible-plant](#get-v1featureedible-plant)
+- [Admin API](#admin-api)
+  - Survival Guide
+    - [POST /v1/feature/survival-guide](#post-v1featuresurvival-guide)
+    - [PUT /v1/feature/survival-guide](#put-v1featuresurvival-guideid)
+    - [DELETE /v1/feature/survival-guide](#delete-v1featuresurvival-guideid)
+  - First Guide
+    - [POST /v1/feature/first-aid](#post-v1featurefirst-aid)
+    - [PUT /v1/feature/first-aid](#put-v1featurefirst-aidid)
+    - [DELETE /v1/feature/first-aid](#delete-v1featurefirst-aidid)
 
 ## Users API
 
@@ -43,7 +52,8 @@ npm run start
 {
   "name": "string",
   "email": "string",
-  "password": "string"
+  "password": "string",
+  "role" : "string" #optional : default("user")
 }
 ```
 
@@ -227,11 +237,18 @@ npm run start
 {
   "success": "boolean",
   "message": "string",
-  "data": {
-    "id": "integer",
-    "name": "string",
-    "url_markdown": "string"
-  }
+  "data": [
+    {
+      "id": "integer",
+      "name": "string",
+      "url_markdown": "string"
+    }
+    {
+      "id": "integer",
+      "name": "string",
+      "url_markdown": "string"
+    }
+  ]
 }
 ```
 
@@ -265,11 +282,18 @@ npm run start
 {
   "success": "boolean",
   "message": "string",
-  "data": {
-    "id": "integer",
-    "name": "string",
-    "url_markdown": "string"
-  }
+  "data": [
+      {
+      "id": "integer",
+      "name": "string",
+      "url_markdown": "string"
+    }
+    {
+      "id": "integer",
+      "name": "string",
+      "url_markdown": "string"
+    }
+  ]
 }
 ```
 
@@ -319,6 +343,274 @@ npm run start
     "updatedAt" : "date"
     }
   ]
+}
+```
+
+**Response Error**
+
+- Body
+
+```json
+{
+  "success": "boolean",
+  "message": "string"
+}
+```
+
+# Admin API
+
+### Note : Admin Role is needed for access this API
+
+# Survival Guide
+
+### POST /v1/feature/survival-guide
+
+**Request:**
+
+- Header
+
+  - Content-Type: application/json
+  - Accept: application/json
+  - X-Auth-Token : "secret api token/key"
+
+- Body
+
+```json
+{
+  "name": "string",
+  "url_markdown": "string",
+  "email": "string"
+}
+```
+
+**Response Success:**
+
+- Body
+
+```json
+{
+  "success": "boolean",
+  "message": "string",
+  "data": {
+    "id": "integer",
+    "name": "string",
+    "url_markdown": "string"
+  }
+}
+```
+
+**Response Error**
+
+- Body
+
+```json
+{
+  "success": "boolean",
+  "message": "string"
+}
+```
+
+##
+
+### PUT /v1/feature/survival-guide/:id
+
+**Request:**
+
+- Header
+
+  - Content-Type: application/json
+  - Accept: application/json
+  - X-Auth-Token : "secret api token/key"
+
+- Body
+
+```json
+{
+  "name": "string",
+  "url_markdown": "string",
+  "email": "string"
+}
+```
+
+**Response Success:**
+
+- Body
+
+```json
+{
+  "success": "boolean",
+  "message": "string",
+  "data": {
+    "id": "integer",
+    "name": "string",
+    "url_markdown": "string"
+  }
+}
+```
+
+**Response Error**
+
+- Body
+
+```json
+{
+  "success": "boolean",
+  "message": "string"
+}
+```
+
+##
+
+### DELETE /v1/feature/survival-guide/:id
+
+**Request:**
+
+- Header
+
+  - Content-Type: application/json
+  - Accept: application/json
+  - X-Auth-Token : "secret api token/key"
+
+**Response Success:**
+
+- Body
+
+```json
+{
+  "success": "boolean",
+  "message": "string"
+}
+```
+
+**Response Error**
+
+- Body
+
+```json
+{
+  "success": "boolean",
+  "message": "string"
+}
+```
+
+# First Aid
+
+### POST /v1/feature/first-aid
+
+**Request:**
+
+- Header
+
+  - Content-Type: application/json
+  - Accept: application/json
+  - X-Auth-Token : "secret api token/key"
+
+- Body
+
+```json
+{
+  "name": "string",
+  "url_markdown": "string",
+  "email": "string"
+}
+```
+
+**Response Success:**
+
+- Body
+
+```json
+{
+  "success": "boolean",
+  "message": "string",
+  "data": {
+    "id": "integer",
+    "name": "string",
+    "url_markdown": "string"
+  }
+}
+```
+
+**Response Error**
+
+- Body
+
+```json
+{
+  "success": "boolean",
+  "message": "string"
+}
+```
+
+##
+
+### PUT /v1/feature/first-aid/:id
+
+**Request:**
+
+- Header
+
+  - Content-Type: application/json
+  - Accept: application/json
+  - X-Auth-Token : "secret api token/key"
+
+- Body
+
+```json
+{
+  "name": "string",
+  "url_markdown": "string",
+  "email": "string"
+}
+```
+
+**Response Success:**
+
+- Body
+
+```json
+{
+  "success": "boolean",
+  "message": "string",
+  "data": {
+    "id": "integer",
+    "name": "string",
+    "url_markdown": "string"
+  }
+}
+```
+
+**Response Error**
+
+- Body
+
+```json
+{
+  "success": "boolean",
+  "message": "string"
+}
+```
+
+##
+
+### DELETE /v1/feature/first-aid/:id
+
+**Request:**
+
+- Header
+
+  - Content-Type: application/json
+  - Accept: application/json
+  - X-Auth-Token : "secret api token/key"
+
+**Response Success:**
+
+- Body
+
+```json
+{
+  "success": "boolean",
+  "message": "string"
 }
 ```
 
