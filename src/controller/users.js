@@ -29,8 +29,7 @@ const loginUsers = async (req, res) => {
     // Send Token
     res
       .status(200)
-      .header("X-Auth-Token", token)
-      .json({ success: true, message: "success", data: { id: getUser.id, email: getUser.email, name: getUser.name } });
+      .json({ success: true, message: "success", data: { id: getUser.id, email: getUser.email, name: getUser.name, token: token} });
   } catch (error) {
     console.error(error);
     res.status(500).json({
