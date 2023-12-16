@@ -104,8 +104,6 @@ npm run start
 
 **Response Success:**
 
-- Header :
-  - X-Auth-Token : "secret api token/key"
 - Body
 
 ```json
@@ -115,7 +113,8 @@ npm run start
   "data": {
     "id": "integer",
     "email": "string",
-    "name": "string"
+    "name": "string",
+    "token": "string"
   }
 }
 ```
