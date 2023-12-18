@@ -47,6 +47,11 @@ const survivalmodel = db.define("survival_guide", {
 });
 
 const edibleplantmodel = db.define("edible_plant", {
+  plant_id: {
+    primaryKey: true,
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false,
