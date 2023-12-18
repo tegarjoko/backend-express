@@ -6,7 +6,7 @@ const db = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.e
   dialect: process.env.DB_DIALECT,
   timezone: "+07:00",
   dialectOptions: {
-    useUTC: false, //for reading from database
+    //for reading from database
     dateStrings: true,
     typeCast(field, next) {
       // convert date time table to string
