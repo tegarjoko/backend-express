@@ -27,9 +27,7 @@ const loginUsers = async (req, res) => {
     };
     const token = jwt.sign(payload, process.env.SECRET_TOKEN);
     // Send Token
-    res
-      .status(200)
-      .json({ success: true, message: "success", data: { id: getUser.id, email: getUser.email, name: getUser.name, token: token} });
+    res.status(200).json({ success: true, message: "success", data: { id: getUser.id, email: getUser.email, name: getUser.name, token: token } });
   } catch (error) {
     console.error(error);
     res.status(500).json({
@@ -126,6 +124,7 @@ const deleteUsers = async (req, res) => {
     res.status(500).json({ success: false, message: "Terjadi kesalahan pada server.", serverMessage: error });
   }
 };
+
 module.exports = {
   loginUsers,
   registerUsers,
