@@ -1,9 +1,10 @@
 const { edibleplantmodel } = require("../models/models");
 
 const postEdiblePlant = async (req, res) => {
-  const { name, description } = req.body;
+  const { plant_id, name, description } = req.body;
   try {
     const postEdible = await edibleplantmodel.create({
+      plant_id: plant_id,
       name: name,
       description: description,
     });
