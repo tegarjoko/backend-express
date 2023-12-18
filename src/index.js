@@ -4,9 +4,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 const usersRoutes = require("./routes/users");
 const featureRoutes = require("./routes/feature");
-const middleLogReq = require("./middleware/logs");
 
-app.use(middleLogReq);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/v1/users", usersRoutes);
